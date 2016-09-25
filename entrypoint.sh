@@ -27,9 +27,6 @@ then
   echo ">> seems like the first start of nginx"
   echo ">> doing some preparations..."
   echo ""
-
-  
-
   echo ">> generating $DH with size: $DH_SIZE"
   openssl dhparam -out "$DH" $DH_SIZE
 fi
@@ -46,6 +43,9 @@ fi
 
 echo ">> copy /etc/nginx/external/*.conf files to /etc/nginx/conf.d/"
 cp /etc/nginx/external/*.conf /etc/nginx/conf.d/ 2> /dev/null > /dev/null
+
+mkdir -p /var/log/nginx/modsecurity_audit
+chown nginx /var/log/nginx/modsecurity_audit
 
 # exec CMD
 echo ">> exec docker CMD"
