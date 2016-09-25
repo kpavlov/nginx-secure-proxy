@@ -89,26 +89,41 @@ RUN \
       unzip \
       wget \
       zlib-dev && \
+    \
     echo "#### Compile Mod Security ####" && \
-    git clone https://github.com/SpiderLabs/ModSecurity.git && \
+    wget https://github.com/SpiderLabs/ModSecurity/releases/download/v${MODSEC_VERSION}/modsecurity-${MODSEC_VERSION}.tar.gz && \
+    tar -xvzf modsecurity-${MODSEC_VERSION}.tar.gz && \
+    mv modsecurity-${MODSEC_VERSION} ModSecurity && \
     cd ModSecurity && \
-    git checkout tags/v${MODSEC_VERSION} && \
     ./autogen.sh && \
     ./configure --enable-standalone-module --disable-mlogc && \
     make && \
     make install && \
     cd .. && \
     wget https://raw.githubusercontent.com/SpiderLabs/ModSecurity/master/modsecurity.conf-recommended && \
-    mkdir -p /etc/nginx && \
-    cat modsecurity.conf-recommended  > /etc/nginx/modsecurity.conf && \
+    mkdir -p /etc/nginx/modsecurity/rules && \
+    cat modsecurity.conf-recommended  > /etc/nginx/modsecurity/modsecurity.conf && \
+    \
     echo "#### Get Mod security configs ####" && \
     wget https://github.com/SpiderLabs/owasp-modsecurity-crs/tarball/master -O owasp-modsecurity-crs.tar.gz && \
     tar -xvzf owasp-modsecurity-crs.tar.gz && \
     CRS_DIR=$(find . -type d -name SpiderLabs-owasp-modsecurity-crs*) && \
-    cat ${CRS_DIR}/modsecurity_crs_10_setup.conf.example >> /etc/nginx/modsecurity.conf && \
-    cat ${CRS_DIR}/base_rules/modsecurity_*.conf >> /etc/nginx/modsecurity.conf && \
-    cp ${CRS_DIR}/base_rules/*.data /etc/nginx/ && \
-    cp ModSecurity/unicode.mapping /etc/nginx/unicode.mapping && \
+    cp -v ${CRS_DIR}/modsecurity_crs_10_setup.conf.example /etc/nginx/modsecurity/modsecurity_crs_10_setup.conf && \
+    cp -v ${CRS_DIR}/base_rules/modsecurity_*.conf /etc/nginx/modsecurity/rules/ && \
+    cp -v ${CRS_DIR}/base_rules/*.data /etc/nginx/modsecurity/rules/ && \
+    cp ModSecurity/unicode.mapping /etc/nginx/modsecurity/unicode.mapping && \
+    echo 'Include /etc/nginx/modsecurity/modsecurity_crs_10_setup.conf' >> /etc/nginx/modsecurity/modsecurity.conf && \
+    echo 'Include /etc/nginx/modsecurity/rules/*.conf' >> /etc/nginx/modsecurity/modsecurity.conf && \
+    echo 'Include /etc/nginx/modsecurity/modsecurity_extra.conf' >> /etc/nginx/modsecurity/modsecurity_extra.conf && \
+    echo "#### Tune Mod security configs ####" && \
+    echo 'SecDefaultAction "log,deny,phase:1"' >> /etc/nginx/modsecurity/modsecurity.conf && \
+    sed -i 's/SecRuleEngine DetectionOnly/SecRuleEngine On/g' /etc/nginx/modsecurity/modsecurity.conf && \
+    sed -i 's/SecStatusEngine On/SecStatusEngine Off/g' /etc/nginx/modsecurity/modsecurity.conf && \
+    sed -i 's/SecAuditLogType Serial/SecAuditLogType Concurrent/g' /etc/nginx/modsecurity/modsecurity.conf && \
+    sed -i 's/SecAuditLog(.*)/#SecAuditLog\1/g' /etc/nginx/modsecurity/modsecurity.conf && \
+    sed -i 's/#SecAuditLogStorageDir.*/SecAuditLogStorageDir \/var\/log\/nginx\/modsecurity_audit\//g' /etc/nginx/modsecurity/modsecurity.conf && \
+    touch /etc/nginx/modsecurity/modsecurity_extra.conf && \
+    \
     echo "#### Compile Nginx ####" && \
     wget http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz && \
     tar -xvzf nginx-${NGINX_VERSION}.tar.gz && \
@@ -158,6 +173,8 @@ COPY security.conf /etc/nginx/conf.d/security.conf
 COPY entrypoint.sh /opt/entrypoint.sh
 RUN chmod a+x /opt/entrypoint.sh
 ENTRYPOINT ["/opt/entrypoint.sh"]
+
+VOLUME /var/log/nginx
 
 EXPOSE 443
 
