@@ -1,8 +1,12 @@
-# Optimized container for Nginx with very secure SSL and mod_security enabled
+# Optimized container for Nginx with TLS and mod_security enabled
+
+[![Build Status](https://travis-ci.org/kpavlov/nginx-secure-proxy.svg?branch=master)](https://travis-ci.org/kpavlov/nginx-secure-proxy)
+
+[![DockerHub Badge](http://dockeri.co/image/kpavlov/nginx-secure-proxy)](https://hub.docker.com/r/kpavlov/nginx-secure-proxy)
 
 The image contails [Nginx](https://nginx.org) v1.10.1 (stable) and [mod_security](https://github.com/SpiderLabs/ModSecurity) v2.9.1 with [OWASP basic ruleset](https://github.com/SpiderLabs/owasp-modsecurity-crs).
 
-This image *does not contain* following nginx modules in contrast to default nginx contailer:
+This image *does not contain* following nginx modules in contrast to default nginx container:
 - http_xslt_module
 - http_perl_module
 
