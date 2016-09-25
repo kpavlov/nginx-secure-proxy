@@ -50,6 +50,10 @@ Please note, that the Common Name (CN) is important and should be the FQDN to th
     -keyout key.pem -out cert.pem \
     -days 3650 -nodes -sha256
 
+## Adding extra settings to modsecurity config:
+
+Add file `/etc/nginx/modsecurity/modsecurity_extra.conf` with extra settings and you're done. It will be included to `modsecurity.conf`.
+
 ## Credits
 
 This image was inspired by the work done on https://github.com/nginxinc/docker-nginx and https://hub.docker.com/r/dan78uk/nginx-ssl-mod-security
