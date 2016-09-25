@@ -1,6 +1,11 @@
 # Optimized container for Nginx with TLS and mod_security enabled
 
 [![Build Status](https://travis-ci.org/kpavlov/nginx-secure-proxy.svg?branch=master)](https://travis-ci.org/kpavlov/nginx-secure-proxy)
+[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)]()
+[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)]()
+[![Docker Pulls](https://img.shields.io/docker/pulls/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
+[![Docker Automated buil](https://img.shields.io/docker/automated/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
+[![license](https://img.shields.io/github/license/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
 
 [![DockerHub Badge](http://dockeri.co/image/kpavlov/nginx-secure-proxy)](https://hub.docker.com/r/kpavlov/nginx-secure-proxy)
 
