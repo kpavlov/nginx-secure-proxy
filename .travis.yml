@@ -1,0 +1,14 @@
+language: bash
+services: docker
+
+before_script:
+  - env | sort
+  - image='kpavlov/nginx-secure-proxy'
+
+script:
+  - docker build -t "$image" .
+
+after_script:
+  - docker images
+
+# vim:set et ts=2 sw=2:
