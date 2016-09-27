@@ -1,11 +1,11 @@
 # Optimized container for Nginx with TLS and mod_security enabled
 
 [![Build Status](https://travis-ci.org/kpavlov/nginx-secure-proxy.svg?branch=master)](https://travis-ci.org/kpavlov/nginx-secure-proxy)
-[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)]()
-[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)]()
-[![Docker Pulls](https://img.shields.io/docker/pulls/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
-[![Docker Automated buil](https://img.shields.io/docker/automated/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
-[![license](https://img.shields.io/github/license/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)]()
+[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
+[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
+[![Docker Automated buil](https://img.shields.io/docker/automated/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
+[![license](https://img.shields.io/github/license/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](https://raw.githubusercontent.com/kpavlov/nginx-secure-proxy/master/LICENSE)
 
 [![DockerHub Badge](http://dockeri.co/image/kpavlov/nginx-secure-proxy)](https://hub.docker.com/r/kpavlov/nginx-secure-proxy)
 
@@ -25,7 +25,7 @@ This image *does not contain* following nginx modules in contrast to default ngi
 This Dockerfile is not really made for direct usage. It should be used as base-image for your nginx project. But you can run it anyways.
 
 You should overwrite the _/etc/nginx/external/_ with a folder, containing your nginx __\*.conf__ files, certs and a __dh.pem__.
-_If you forget the dh.pem file, it will be created at the first start - but this can/will take a long time!_
+_If you forget the dh.pem file, it will be created at the first startup - but this can/will take a long time!_
 
     docker run -d \
     -p 443:443 \
