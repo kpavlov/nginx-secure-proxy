@@ -28,7 +28,7 @@ You should overwrite the _/etc/nginx/external/_ with a folder, containing your n
 _If you forget the dh.pem file, it will be created at the first start - but this can/will take a long time!_
 
     docker run -d \
-    -p 80:80 -p 443:443 \
+    -p 443:443 \
     -e 'DH_SIZE=512' \
     -v $EXT_DIR:/etc/nginx/external/ \
     nginx-mod_security
