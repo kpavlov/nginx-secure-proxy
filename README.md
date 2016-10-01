@@ -1,8 +1,7 @@
 # Optimized container for Nginx with TLS and mod_security enabled
 
 [![Build Status](https://travis-ci.org/kpavlov/nginx-secure-proxy.svg?branch=master)](https://travis-ci.org/kpavlov/nginx-secure-proxy)
-[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
-[![ImageLayers Layers](https://img.shields.io/imagelayers/layers/kpavlov/nginx-secure-proxy/latest.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
+[![](https://images.microbadger.com/badges/image/kpavlov/nginx-secure-proxy.svg)](https://microbadger.com/images/kpavlov/nginx-secure-proxy "Image badge on microbadger.com")
 [![Docker Pulls](https://img.shields.io/docker/pulls/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
 [![Docker Automated buil](https://img.shields.io/docker/automated/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](ttps://hub.docker.com/r/kpavlov/nginx-secure-proxy)
 [![license](https://img.shields.io/github/license/kpavlov/nginx-secure-proxy.svg?maxAge=2592000)](https://raw.githubusercontent.com/kpavlov/nginx-secure-proxy/master/LICENSE)

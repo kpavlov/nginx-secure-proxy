@@ -12,7 +12,9 @@ script:
 after_script:
   - docker images
 
-#after_success:
+after_success:
+  - curl -X POST https://hooks.microbadger.com/images/kpavlov/nginx-secure-proxy/w7Km4Io8yoQYd59_qiECfl-2YW4=
+
 #  - if [ "$TRAVIS_BRANCH" == "master" ]; then
 #    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
 #    docker push "$image";
